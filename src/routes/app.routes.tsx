@@ -1,13 +1,10 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-
-import { View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import TabRoutes from './tab.routes';
-
-import Home from '../pages/Home';
 import FoodDetails from '../pages/FoodDetails';
+import Home from '../pages/Home';
+import TabRoutes from './tab.routes';
 
 const App = createStackNavigator();
 

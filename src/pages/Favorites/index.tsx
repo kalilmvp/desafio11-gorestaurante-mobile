@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-
 import api from '../../services/api';
 import formatValue from '../../utils/formatValue';
-
 import {
   Container,
+  Food,
+  FoodContent,
+  FoodDescription,
+  FoodImageContainer,
+  FoodList,
+  FoodPricing,
+  FoodsContainer,
+  FoodTitle,
   Header,
   HeaderTitle,
-  FoodsContainer,
-  FoodList,
-  Food,
-  FoodImageContainer,
-  FoodContent,
-  FoodTitle,
-  FoodDescription,
-  FoodPricing,
 } from './styles';
 
 interface Food {
@@ -33,6 +31,16 @@ const Favorites: React.FC = () => {
   useEffect(() => {
     async function loadFavorites(): Promise<void> {
       // Load favorite foods from api
+      const response = await api.get<Food[]>('/favorites');
+
+      const favoritesMapped = response.data.map(food => {
+        return {
+          ...food,
+          formattedPrice: formatValue(food.price),
+        };
+      });
+
+      setFavorites(favoritesMapped);
     }
 
     loadFavorites();
